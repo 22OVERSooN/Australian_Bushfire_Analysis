@@ -5,13 +5,14 @@
         <meta charset="UTF-8">
         <title>Australia Bushfire Analysis</title>
         <link rel="stylesheet" href="statics/CSS/bootstrap.css">
+        <link rel="stylesheet" href="statics/CSS/style.css">
     </head>
 
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">Australia Bushfire Analysis</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+              <a class="navbar-brand" href="index.html">Australia Bushfire Analysis</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
           
@@ -32,15 +33,52 @@
               </div>
             </div>
           </nav>
-          <div>
+          <div class ="container">
+          <div class="row">
+          <div class="col-md-2">
+              <div class="dropdownbox">
+                  <h5 style ="color: aliceblue; font-size: 14px;">Date:</h5>
+                  <h5 style ="color: aliceblue; font-size: 14px;">(dd/mm/yyyy)</h5>
+                  <select id ="selDataset" onchange="optionChanged(this.value)">
 
+                  </select>
+              </div>
           </div>
-          <div>
-
+          <div class="col-md-10">
+            <div id="mapplot">
+                
+            </div>
+        </div>
           </div>
-          <div>
-              
+          <div class="row">
+            <div class="col-md-2">
+                <div class="dropdownbox">
+                    <h5 style ="color: aliceblue; font-size: 14px;">Station:</h5>
+                    <h5 style ="color: aliceblue; font-size: 14px;">(State/Name)</h5>
+                    <select id ="selDataset" onchange="optionChanged(this.value)">
+  
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-10">
+              <div id="barplot">
+                  
+              </div>
           </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="dropdownbox">
+                        <h5 style ="color: aliceblue; font-size: 14px;">maybe put a button here</h5>
+                    </div>
+                </div>
+                <div class="col-md-10">
+                  <div id="racechart">
+                      
+                  </div>
+              </div>
+                </div>
+        </div>
     </body>
 </html>
 
