@@ -1,7 +1,4 @@
-﻿"This file contains the date of installation of the initial AWS at those Bureau of Meteorology sites where an AWS has been used. Equipment may have been added, modified or removed after that date. ",,,,,,,,,,,,
-This list was compiled in June 2012,,,,,,,,,,,,
-,,,,,,,,,,,,
-STN_NUM,WMO_NUM,AVIATION_ID,NAME,REGION,STATUS,EQUIP_START,EQUIP_END,LATITUDE,LONGITUDE,STN_HT,BAR_HT,AERO_HT
+﻿STN_NUM,WMO_NUM,AVIATION_ID,NAME,REGION,STATUS,EQUIP_START,EQUIP_END,LATITUDE,LONGITUDE,STN_HT,BAR_HT,AERO_HT
 1006,95214,YWYM,WYNDHAM AERO,WA,OPEN,22/9/00,,-15.51,128.1503,3.8,4.3,4.3
 1007,94102,YTTI,TROUGHTON ISLAND,NT,OPEN,30/6/91,,-13.7542,126.1485,6,8,8.2
 1019,94100,YKAL,KALUMBURU,WA,OPEN,16/9/98,,-14.2964,126.6453,23,24,29
