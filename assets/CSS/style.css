@@ -14,12 +14,15 @@
     width:2000px;
     margin-top: 50px;
     margin-bottom: 30px;
-   
+
 }
 
+.container_box{
+    width:800px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    background-color: #337ab7;
+    margin-right: auto;
+    margin-left: auto;
+}
 
-/* @media (min-width:768px) {
-    .container{
-        width: 758px;
-    }
-    } */
