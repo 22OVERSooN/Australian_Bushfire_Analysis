@@ -18,7 +18,7 @@ function init(){
             dropdownBar1.append("option").text(stationName).property("value");
         })
         console.log(stationNames)
-        drawPlot(stationNames[0])
+        drawPlot("ACT-Canberra Airport")
     })
 
 }
