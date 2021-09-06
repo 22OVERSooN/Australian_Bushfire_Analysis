@@ -18,9 +18,9 @@ function init(){
             dropdownBar1.append("option").text(stationName).property("value");
         })
         console.log(stationNames)
-        
+        drawPlot(stationNames[0])
     })
-    //drawPlot(datas[0]['State-Station'])
+
 }
 init();
 
@@ -33,35 +33,52 @@ function drawPlot(Names){
     
     d3.json("../../Resources/Json/aus_weather_barchart.json").then((datas) => {  
         //render through the data set
+        var fullNames = `${Names} `
+        console.log(fullNames)
         datas.forEach(function(d){
-            if(d['State-Station'] === Names){
+            if(d['State-Station'] === fullNames){
                 Date.push(d['Date'])
                 MaxTemp.push(d['Max Temp'])
+                Rain.push(d['Rain'])
             }
-            // if(data['State-Station'] === Names)
-            //     Date.push(data)
-            //     MaxTemp.push(data['Max Temp'])
         });
-        console.log(MaxTemp)
-        console.log(Date)
 
-        var trace = {
+
+        var trace1 = {
             x:Date,
             y:MaxTemp,
+            name : "Max Temp(°C)",
             type:"bar",
         };
-        var data = [trace];
+
+        var trace2 = {
+            x:Date,
+            y:Rain,
+            name : "Rainfall(mm)",
+            yaxis: "y2",
+            type:"scatter"
+        }
+
+        var data = [trace1,trace2];
+        
     
         var layout = {
             font:{family:"Arial Rounded MT Bold"},
-            title:"Max Temp Monthly 05/2019-06/2020",
-            yaxis:{ title : "Max Temp"},
+            title:"Average Max Temp&Rainfall Monthly 05/2019-06/2020",
+            yaxis:{ title : "Max Temp",},
+            yaxis2:{ title:"Rainfall",
+            'side':'right',
+            'overlaying':'y',
+            titlefont: {color: '#ed7014'},
+            tickfont: {color: '#ed7014'},
+            },
             xaxis:{ title : "Date"},
           
         }
         Plotly.newPlot("barplot",data,layout)
     });
 };
-drawPlot("ACT-Canberra Airport ")
-
+function optionChanged1(Names){
+    drawPlot(Names)
+}
 
