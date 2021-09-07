@@ -1,66 +1,116 @@
-function createMap(bikeStations) {
 
-  // Create the tile layer that will be the background of our map
+
+
+
+function createMap(bushFires, heat) {
+  
   var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+      attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+      maxZoom: 18,
+      id: "light-v10",
+      accessToken: API_KEY});
+
+
+  var satellitemap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
     maxZoom: 18,
-    id: "light-v10",
+    id: "satellite-v9",
     accessToken: API_KEY
   });
-
-  // Create a baseMaps object to hold the lightmap layer
+  
   var baseMaps = {
-    "Light Map": lightmap
+    "Light Map": lightmap,
+    "Satellite Map": satellitemap
   };
 
-  // Create an overlayMaps object to hold the bikeStations layer
-  var overlayMaps = {
-    "Bike Stations": bikeStations
+    var overlayMaps = {
+    "Bush Fires": bushFires,
+    "Heat Map": heat
   };
 
-  // Create the map object with options
-  var map = L.map("map-id", {
+  var myMap = L.map("map-id", {
     center: [-27, 132],
     zoom: 5,
-    layers: [lightmap, bikeStations]
+    layers: [lightmap]
   });
-
-  // Create a layer control, pass in the baseMaps and overlayMaps. Add the layer control to the map
+      
   L.control.layers(baseMaps, overlayMaps, {
     collapsed: false
-  }).addTo(map);
-}
+    }).addTo(myMap);
+  }
 
 function createMarkers(response) {
 
-  // Pull the "stations" property off of response.data
-  var stations = response.data.stations;
+  
+  var bushfires = response;
 
-  // Initialize an array to hold bike markers
-  var bikeMarkers = [];
 
-  // Loop through the stations array
-  for (var index = 0; index < stations.length; index++) {
-    var station = stations[index];
+  var bushFires = [];
 
-    // For each station, create a marker and bind a popup with the station's name
-    var bikeMarker = L.marker([station.lat, station.lon])
-      .bindPopup("<h3>" + station.name + "<h3><h3>Capacity: " + station.capacity + "</h3>");
+  
+  for (var index = 0; index < 1000; index++) {
+    var fire = bushfires[index];
 
-    // Add the marker to the bikeMarkers array
-    bikeMarkers.push(bikeMarker);
+    var bushFire = L.marker([fire.latitude, fire.longitude]);
+
+    bushFires.push(bushFire);
   }
 
-  // Create a layer group made from the bike markers array, pass it into the createMap function
-  createMap(L.layerGroup(bikeMarkers));
+  var markers = L.markerClusterGroup({});
+
+  // Loop through data
+  for (var i = 0; i < response.length; i++) {
+
+    // Set the data location property to a variable
+    var location = response[i];
+
+    // Check for location property
+    if (location) {
+
+      // Add a new marker to the cluster group and bind a pop-up
+      markers.addLayer(L.marker([location.latitude, location.longitude])
+        .bindPopup(response[i].descriptor));
+    }
+  }
+
+  var heatArray = [];
+
+  var maxBright = 0;
+
+  for (var i = 0; i < response.length; i++) {
+
+    var fire = response[i];
+
+    if (fire.brightness > maxBright) {
+      maxBright = fire.brightness;
+    }
+
+    if (fire) {
+      heatArray.push([fire.latitude, fire.longitude, fire.brightness/500]);
+    }
+  }
+
+  console.log(heatArray);
+
+  var heat = L.heatLayer(heatArray, {
+    radius: 6,
+    blur: 0,
+    maxZoom: 5,
+    gradient: {
+      0.2: "blue",
+      0.4: "lime",
+      0.6: "yellow",
+      0.8: "red",
+      1.0: "black"
+    }
+  })
+
+  createMap(markers, heat);
 }
 
 
-// Perform an API call to the Citi Bike API to get station information. Call createMarkers when complete
-d3.json("https://gbfs.citibikenyc.com/gbfs/en/station_information.json").then(createMarkers);
-
-function printAll(response) {
-  console.log(response);
-}
-
-d3.json("http://127.0.0.1:5000/foo").then(printAll);
+// d3.json("static/js/data.json").then(function printAll(response) {
+//   console.log(response);
+// });
+// d3.json("static/js/data.json").then(createMarkers);
+d3.json("http://127.0.0.1:5000/january").then(createMarkers);
