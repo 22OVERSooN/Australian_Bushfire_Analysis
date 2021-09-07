@@ -113,4 +113,4 @@ function createMarkers(response) {
 //   console.log(response);
 // });
 // d3.json("static/js/data.json").then(createMarkers);
-d3.json("http://127.0.0.1:5000/january").then(createMarkers);
+d3.json("http://127.0.0.1:5000/december").then(createMarkers);

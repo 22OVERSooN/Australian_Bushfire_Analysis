@@ -9,6 +9,16 @@ import pymongo
 app = Flask(__name__)
 cors = CORS(app, resources={r"/january": {"origins": "*"}})
 cors = CORS(app, resources={r"/february": {"origins": "*"}})
+cors = CORS(app, resources={r"/march": {"origins": "*"}})
+cors = CORS(app, resources={r"/april": {"origins": "*"}})
+cors = CORS(app, resources={r"/may": {"origins": "*"}})
+cors = CORS(app, resources={r"/june": {"origins": "*"}})
+cors = CORS(app, resources={r"/july": {"origins": "*"}})
+cors = CORS(app, resources={r"/august": {"origins": "*"}})
+cors = CORS(app, resources={r"/september": {"origins": "*"}})
+cors = CORS(app, resources={r"/october": {"origins": "*"}})
+cors = CORS(app, resources={r"/november": {"origins": "*"}})
+cors = CORS(app, resources={r"/december": {"origins": "*"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.config["MONGO_URI"] = "mongodb://localhost:27017/bushfires"
 # setup mongo connection
