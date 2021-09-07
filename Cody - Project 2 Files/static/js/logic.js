@@ -51,10 +51,26 @@ function createMarkers(response) {
   for (var index = 0; index < 1000; index++) {
     var fire = bushfires[index];
 
-    var bushFire = L.marker([fire.latitude, fire.longitude])
-      .bindPopup("<h3>" + `${fire.instrument}` + "<h3><h3>" + `${fire.brightness}` + "</h3>");
+    var bushFire = L.marker([fire.latitude, fire.longitude]);
 
     bushFires.push(bushFire);
+  }
+
+  var markers = L.markerClusterGroup({});
+
+  // Loop through data
+  for (var i = 0; i < response.length; i++) {
+
+    // Set the data location property to a variable
+    var location = response[i];
+
+    // Check for location property
+    if (location) {
+
+      // Add a new marker to the cluster group and bind a pop-up
+      markers.addLayer(L.marker([location.latitude, location.longitude])
+        .bindPopup(response[i].descriptor));
+    }
   }
 
   var heatArray = [];
@@ -77,7 +93,7 @@ function createMarkers(response) {
   console.log(heatArray);
 
   var heat = L.heatLayer(heatArray, {
-    radius: 8,
+    radius: 6,
     blur: 0,
     maxZoom: 5,
     gradient: {
@@ -89,7 +105,7 @@ function createMarkers(response) {
     }
   })
 
-  createMap(L.layerGroup(bushFires), heat);
+  createMap(markers, heat);
 }
 
 
