@@ -89,12 +89,8 @@ function drawPlot(Names){
                       
         }
 
-        // CONFIG
-        let config = {
-            displaylogo: false,
-            displayModeBar: false
-        }
-        Plotly.newPlot("barplot",data,layout,config)
+        
+        Plotly.newPlot("barplot",data,layout)
     });
 };
 function optionChanged1(Names){
