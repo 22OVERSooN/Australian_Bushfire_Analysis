@@ -7,8 +7,8 @@ import pymongo
 # Flask Setup
 #################################################
 app = Flask(__name__)
-# cors = CORS(app, resources={r"/foo": {"origins": "*"}})
-# app.config['CORS_HEADERS'] = 'Content-Type'
+cors = CORS(app, resources={r"/january": {"origins": "*"}})
+app.config['CORS_HEADERS'] = 'Content-Type'
 app.config["MONGO_URI"] = "mongodb://localhost:27017/bushfires"
 # setup mongo connection
 conn = "mongodb://localhost:27017"
@@ -22,16 +22,17 @@ produce = db.fire
 # Flask Routes
 #################################################
 
-@app.route('/foo', methods=['GET'])
+@app.route('/january', methods=['GET'])
+@cross_origin()
 def foo():
     output = []
     for s in produce.find():
-        if  s['acq_date'] > "2019-11-31":
+        if  s['acq_date'] < "2019-02-01":
             output.append({'date': s['acq_date'],
                             'latitude': s['latitude'],
                             'longitude': s['longitude'],
                             'brightness': s['brightness']})
-    return jsonify({'result': output})
+    return jsonify(output)
 
 
 
