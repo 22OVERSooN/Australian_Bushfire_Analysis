@@ -49,6 +49,8 @@ function drawPlot(Names){
             y:MaxTemp,
             name : "Max Temp(°C)",
             type:"bar",
+            mode:"bar+markers",
+            hovertemplate:'<i>Date</i>: %{x|%Y-%m}'+'<br><b>Rainfall</b>: %{y}',
         };
 
         var trace2 = {
@@ -56,7 +58,9 @@ function drawPlot(Names){
             y:Rain,
             name : "Rainfall(mm)",
             yaxis: "y2",
-            type:"scatter"
+            type:"scatter",
+            mode:"lines+markers",
+            hovertemplate:'<i>Date</i>: %{x|%Y-%m}'+'<br><b>Rainfall</b>: %{y}',
         }
 
         var data = [trace1,trace2];
