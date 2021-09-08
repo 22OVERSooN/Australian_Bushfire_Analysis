@@ -72,7 +72,7 @@ function drawPlot(Names){
         
     
         var layout = {
-            // xaxis: {domain: [0,8]},
+            toolTip: {valueFormatString: "MM/YYYY"},
             font:{family:"Arial Rounded MT Bold"},
             title:"Average Max Temp&Rainfall Monthly 05/2019-06/2020",
             yaxis:{ title : "Max Temp",
