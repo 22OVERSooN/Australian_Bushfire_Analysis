@@ -21,7 +21,7 @@
     width:800px;
     margin-top: 50px;
     margin-bottom: 30px;
-    background-color: #337ab7;
+    background-color: #283a4b;
     margin-right: auto;
     margin-left: auto;
 }
@@ -42,6 +42,7 @@
 }
 .sandbox {
     position: relative;
+    margin: 0 auto; 
     width:2000px;
     height: 300px;
     border: solid 2px #eee;
