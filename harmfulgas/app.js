@@ -1,125 +1,15 @@
-// d3.csv('windspeed.csv', function(err, rows){
-//       function unpack(rows, key) {
-//           return rows.map(function(row) { return row[key]; });
-//         }
-//         var trace1 = {
-//             x: unpack(rows, 'latitude'),
-//             y: unpack(rows, 'longitude'),
-//             z: unpack(rows, 'max-wind-spd'),
-//             marker: {
-//               size: 2,
-//               color: unpack(rows, 'max-wind-spd'),
-//             //   colorscale:'Earth',
-//               line: {color: 'transparent'},
-//               showscale:true
-//             },
-//             mode: 'markers',
-//             type: 'scatter3d',
-//             text: unpack(rows, 'State-Station'),
-//             hoverinfo: 'x+y+z+text',
-//             showlegend: false
-//           };
-        
-//         var data = [trace1]
-
-//         var layout = {
-//             // paper_bgcolor: 'black',
-//             // plot_bgcolor: 'black',
-//             title: 'test',
-//             // font: {color: 'white'},
-//             colorbar: true,
-//             colorscale:{
-//                 diverging:'Default'
-//             },
-//             xaxis: {title:{
-//                  text:'Status'},
-//                        showticklabels: true,
-//                        showgrid: true,
-//                        gridcolor: 'white'},
-//             yaxis: {title: 'Type',
-//                        showticklabels: true,
-//                        showgrid: true,
-//                        gridcolor: 'white'},
-//             zaxis: {title: 'Elev',
-//                        showgrid: true,
-//                        gridcolor: 'white'}
-//                    }
-       
-      
-//       Plotly.newPlot("myDiv", data, layout);
-      
-//       });
-
-
-
-// d3.csv('all.csv', function(err, rows){
-//       function unpack(rows, key) {
-//           return rows.map(function(row) { return row[key]; });
-//         }
-//         var trace1 = {
-//             x: unpack(rows, 'latitude'),
-//             y: unpack(rows, 'longitude'),
-//             z: unpack(rows, 'brightness'),
-            
-//             type: 'surface',
-//             showlegend:false,
-            
-            
-//           };
-        
-//         var data = [trace1]
-
-//         var layout = {
-//             title:'test2',
-
-//             xaxis: {title: 'Status',
-//                        showticklabels: false,
-//                        showgrid: true,
-//                        gridcolor: 'white'},
-//             yaxis: {title: 'Type',
-//                        showticklabels: false,
-//                        showgrid: true,
-//                        gridcolor: 'white'},
-//             zaxis: {title: 'Elev',
-//                        showgrid: true,
-//                        gridcolor: 'white'}
-//                    }
-       
-      
-//       Plotly.newPlot("myDiv", data, layout, {showLink: false});
-      
-//       });
-
-// // Select chartholder
-// var chartHolder = d3.select("#chartholder");
-
-// // Declare the chart component
-// var myChart = d3.x3d.chart.scatterPlot()
-//   .mappings({ x: 'x', y: 'y', z: 'z', size: 'size', color: 'color' })
-//   .colors(d3.schemeRdYlGn[8])
-//   .sizeRange([0.1, 1.5]);
-
-// var refreshChart = function() {
-//   // Generate some data
-//   var myData = d3.x3d.randomData.dataset6(200);
-
-//   chartHolder.datum(myData).call(myChart);
-// };
-
-// d3.select("#refresh").attr("onclick", "refreshChart()");
-
-// refreshChart();
-
-d3.csv('test1.csv', function (err, data) {
+d3.json('http://127.0.0.1:5000/letitgo', function (err, data) {
   // Create a lookup table to sort and regroup the columns of data,
-  // first by year, then by continent:
+  // first by month, then by region areas:
+  console.log(data)
+
   var lookup = {};
   function getData(period, region) {
     var byMonth, trace;
     if (!(byMonth = lookup[period])) {;
       byMonth = lookup[period] = {};
     }
-	 // If a container for this year + continent doesn't exist yet,
+	 // If a container for this month + region doesn't exist yet,
 	 // then create one:
     if (!(trace = byMonth[region])) {
       trace = byMonth[region] = {
@@ -139,24 +29,24 @@ d3.csv('test1.csv', function (err, data) {
     var trace = getData(datum.period, datum.region);
     trace.text.push(datum.station);
     trace.id.push(datum.station);
-    trace.x.push(datum.so2_avg);
-    trace.y.push(datum['pm2.5_avg']);
-    trace.marker.size.push(datum['pm2.5_avg']*5);
+    trace.x.push(datum.pm25_avg);
+    trace.y.push(datum.so2_avg);
+    trace.marker.size.push(datum.pm25_avg*5);
   }
 
   // Get the group names:
   var months = Object.keys(lookup);
-  // In this case, every year includes every continent, so we
-  // can just infer the continents from the *first* year:
+  // In this case, every month includes every region, so we
+  // can just infer the regions from the *first* month:
   var firstMonth = lookup[months[0]];
   var regions = Object.keys(firstMonth);
 
-  // Create the main traces, one for each continent:
+  // Create the main traces, one for each region:
   var traces = [];
   for (i = 0; i < regions.length; i++) {
     var data = firstMonth[regions[i]];
 	 // One small note. We're creating a single trace here, to which
-	 // the frames will pass data for the different years. It's
+	 // the frames will pass data for the different months. It's
 	 // subtle, but to avoid data reference problems, we'll slice
 	 // the arrays to ensure we never write any new data into our
 	 // lookup table:
@@ -175,7 +65,7 @@ d3.csv('test1.csv', function (err, data) {
     });
   }
 
-  // Create a frame for each year. Frames are effectively just
+  // Create a frame for each month. Frames are effectively just
   // traces, except they don't need to contain the *full* trace
   // definition (for example, appearance). The frames just need
   // the parts the traces that change (here, the data).
@@ -208,12 +98,12 @@ d3.csv('test1.csv', function (err, data) {
 
   var layout = {
     xaxis: {
-      title: 'Average SO2 Monthly',
-      range: [0, 0.6]
+      title: 'Average PM2.5 Monthly (µg/m3)',
+      range: [0, 100]
     },
     yaxis: {
-      title: 'Average PM2.5 Monthly',
-      range:[4,100]
+      title: 'Average SO2 Monthly (pphm)',
+      range:[-0.5,1]
     //   type: 'log'
     },
     hovermode: 'closest',

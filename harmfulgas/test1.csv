@@ -1,4 +1,4 @@
-period,so2_avg,station,region,pm2.5_avg
+period,so2_avg,station,region,pm25_avg
 31/05/2019,0.1,RANDWICK,Sydney,9.9
 30/06/2019,0.1,RANDWICK,Sydney,7.6
 31/07/2019,0.1,RANDWICK,Sydney,7.1
