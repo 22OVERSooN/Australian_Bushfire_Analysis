@@ -8,6 +8,18 @@
         <title>Australia Bushfire Analysis</title>
         <link rel="stylesheet" href="assets/CSS/bootstrap.css">
         <link rel="stylesheet" href="assets/CSS/style.css">
+        <style>
+          #canvas-basic {
+              position: absolute;
+              display: block;
+              width: 100%;
+              height: 100%;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+          }
+      </style>
     </head>
 
     <body>
@@ -35,6 +47,14 @@
               </div>
             </div>
           </nav>
+          <div class="outer">
+          <div class="sandbox">
+            <canvas id = "title" width = "1166px" height = "300px"></canvas>
+          </div>
+          <!-- <div class = "sandbox1"> -->
+
+          </div>
+          </div>
           <div class ="container">
           <div class="row">
           <div class="col-md-2">
@@ -69,25 +89,20 @@
           </div>
             </div>
             <div class="row">
-                <div class="col-md-2">
-                    <div class="dropdownbox">
-                        <h5 style ="color: aliceblue; font-size: 14px;">maybe put a button here</h5>
-                    </div>
-                </div>
-                <div class="col-md-10">
+                <div class="col-md-12">
                   <div id="racechart">
                       
                   </div>
               </div>
                 </div>
         </div>
+        <script src="assets/JS/granim.min.js"></script>
         <script src="https://d3js.org/d3.v5.min.js"></script>
         <script src='https://cdn.plot.ly/plotly-2.4.2.min.js'></script>
         <script src="Resources/Json/aus_weather_barchart.json"></script>
         <script src="assets/JS/app.js"></script>
-        <!-- <script type="text/javascript" src="js/typeface-0.10.js"></script>
-        <script type="text/javascript" src="js/qlassik_medium_regular.typeface.js"></script> -->
-        
+        <!-- <script type = "text/javascript" src="assets/JS/background.js"></script> -->
+
     </body>
 </html>
 
