@@ -97,6 +97,9 @@ d3.json('http://127.0.0.1:5000/letitgo', function (err, data) {
   }
 
   var layout = {
+    font:{
+      family:"'Courier New', Courier, monospace"
+    },
     xaxis: {
       title: 'Average PM2.5 Monthly (µg/m3)',
       range: [0, 100]
