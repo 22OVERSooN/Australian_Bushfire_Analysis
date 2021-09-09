@@ -1,12 +1,12 @@
 #Dependencies and Setup
-from flask import Flask, jsonify, render_template, redirect,request
-# from flask_cors import CORS, cross_origin
+from flask import Flask, jsonify
+from flask_cors import CORS, cross_origin
 import pymongo
-from bson import json_util, ObjectId
-import json
+
 
 #use flask_pymongo to set up mongo connection
 app = Flask(__name__)
+CORS(app)
 conn = "mongodb://localhost:27017"
 client = pymongo.MongoClient(conn)
 
@@ -34,23 +34,14 @@ weatherbar = db2.aus_weather_barchart
 @app.route('/barsnscatters')
 def barsnscatters():
 
-    # use the input from html as a filter
-    # stationid = request.form.get('selDataset2')
-    # return(str(stationid )) # just to see what select is
-
-    # stationid =str("ACT-Canberra Airport")
     bar_data = []
     for bdata in weatherbar.find():
         bdata.pop('_id') 
         bdata=bdata.copy()
-        # bdatafilter={ key:value for (key,value) in bdata.items() if key [3] == stationid}
-        # bdatafilter=bdatafilter.copy()
         bar_data.append(bdata)
     return jsonify(bar_data)
-
-      
-    
-
+        
+ 
 @app.route("/")
 def welcome():
     return (
