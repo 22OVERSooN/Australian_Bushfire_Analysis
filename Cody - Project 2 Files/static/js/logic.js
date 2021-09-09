@@ -33,6 +33,15 @@ function createMap(bushFires, heat) {
     zoom: 5,
     layers: [lightmap]
   });
+
+  
+  var sliderControl = L.control.sliderControl({position: "bottomleft", layer: bushFires});
+
+  //Make sure to add the slider to the map ;-)
+  myMap.addControl(sliderControl);
+
+  //And initialize the slider
+  sliderControl.startSlider();
       
   L.control.layers(baseMaps, overlayMaps, {
     collapsed: false
@@ -45,15 +54,17 @@ function createMarkers(response) {
   var bushfires = response;
 
 
-  var bushFires = [];
+  var bushFireMarkers = [];
 
   
-  for (var index = 0; index < 1000; index++) {
+  for (var index = 0; index < 3000; index++) {
     var fire = bushfires[index];
 
-    var bushFire = L.marker([fire.latitude, fire.longitude]);
+    var bushFire = L.marker([fire.latitude, fire.longitude]).bindPopup("<h3>" + fire.date + "<h3><hr><p>Capacity: " + fire.brightness + "K</p>");
 
-    bushFires.push(bushFire);
+    bushFireMarkers.push(bushFire);
+
+    var bushFires = L.layerGroup(bushFireMarkers);
   }
 
   var markers = L.markerClusterGroup({});
@@ -86,7 +97,7 @@ function createMarkers(response) {
     }
 
     if (fire) {
-      heatArray.push([fire.latitude, fire.longitude, fire.brightness/500]);
+      heatArray.push([fire.latitude, fire.longitude, fire.brightness/400.1]);
     }
   }
 
@@ -105,7 +116,7 @@ function createMarkers(response) {
     }
   })
 
-  createMap(markers, heat);
+  createMap(bushFires, heat);
 }
 
 
