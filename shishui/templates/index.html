@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Australia Bushfire Analysis</title>
+        <link rel="stylesheet" href="../assets/CSS/bootstrap.css">
+        <link rel="stylesheet" href="../assets/CSS/style.css">
+    </head>
+
+    <body>
+          <div class="outer">
+          <div class="sandbox">
+            <canvas id = "title" width = "1166" height = "300"></canvas>
+            <div class = "text-block">
+              <h1>Australia Bushfire 2019-2020</h1>
+              <br>
+              <br>
+              <a style="font-size: 20px; color: aliceblue;" class="text-link" href = "index.html">Home</a>
+              <br>
+              <a style="font-size: 20px; color: aliceblue;" class="text-link" href = "../contact.html">About us</a>
+            </div>
+          </div>
+
+          </div>
+          </div>
+          <div class ="container">
+          <div class="row">
+          <div class="col-md-3">
+              <div class="dropdownbox">
+                  <h5 style ="color: aliceblue; font-size: 14px;">Date:</h5>
+                  <h5 style ="color: aliceblue; font-size: 14px;">(dd/mm/yyyy)</h5>
+                  <select id ="selDataset1" onchange="optionChanged(this.value)">
+
+                  </select>
+              </div>
+          </div>
+          <div class="col-md-9">
+            <div id="mapplot">
+                
+            </div>
+        </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+                <div class="dropdownbox" style="opacity: 0.8;">
+                    <h5 style ="color: aliceblue; font-size: 14px;">Station:</h5>
+                    <h5 style ="color: aliceblue; font-size: 14px;">(State/Name)</h5>
+                    <select id ="selDataset2" onchange="optionChanged1(this.value)" style="font-size: 14px;">
+  
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-9">
+              <div id="barplot">
+                  
+              </div>
+          </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                  <div id="slidingbar">
+                      
+                  </div>
+              </div>
+                </div>
+        </div>
+        <script src="../assets/JS/granim.min.js"></script>
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <script src='https://cdn.plot.ly/plotly-2.4.2.min.js'></script>
+
+       
+        <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script> -->
+
+    
+        <!-- <script src="Resources/Json/aus_weather_barchart.json"></script> -->
+        <script src="../assets/JS/logic1.js"></script>
+        <!-- <script src="../assets/JS/app.js"></script> -->
+        <!-- <script type = "text/javascript" src="assets/JS/background.js"></script> -->
+
+    </body>
+</html>
+
