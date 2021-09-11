@@ -1,9 +1,29 @@
+var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+  attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+  maxZoom: 18,
+  id: "light-v10",
+  accessToken: API_KEY});
 
+var satellitemap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+    attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+    maxZoom: 18,
+    id: "satellite-v9",
+    accessToken: API_KEY
+  });
 
+var myMap = L.map("map-id", {
+  center: [-27, 132],
+  zoom: 5,
+  layers: [lightmap]
+});
+
+var sliderControl = L.control({position: "bottomleft"});
+
+var layerControl = L.control.layers();
 
 
 function createMap(bushFires, heat) {
-  
+
   var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
       attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
       maxZoom: 18,
@@ -28,61 +48,43 @@ function createMap(bushFires, heat) {
     "Heat Map": heat
   };
 
-  var myMap = L.map("map-id", {
-    center: [-27, 132],
-    zoom: 5,
-    layers: [lightmap]
-  });
+  myMap.addLayer(lightmap);
+
+  // var myMap = L.map("map-id", {
+  //   center: [-27, 132],
+  //   zoom: 5,
+  //   layers: [lightmap]
+  // });
 
   
   var sliderControl = L.control.sliderControl({position: "bottomleft", layer: bushFires});
 
-  //Make sure to add the slider to the map ;-)
   myMap.addControl(sliderControl);
 
-  //And initialize the slider
   sliderControl.startSlider();
       
-  L.control.layers(baseMaps, overlayMaps, {
+  var layerControl = L.control.layers(baseMaps, overlayMaps, {
     collapsed: false
-    }).addTo(myMap);
+    })
+    layerControl.addTo(myMap);
   }
 
 function createMarkers(response) {
 
-  
   var bushfires = response;
-
 
   var bushFireMarkers = [];
 
-  
-  for (var index = 0; index < 3000; index++) {
+  for (var index = 0; index < 500; index++) {
     var fire = bushfires[index];
 
-    var bushFire = L.marker([fire.latitude, fire.longitude]).bindPopup("<h3>" + fire.date + "<h3><hr><p>Capacity: " + fire.brightness + "K</p>");
+    var bushFire = L.marker([fire.latitude, fire.longitude]).bindPopup("<h3>" + fire.date + "<h3><hr><p>Brightness: " + fire.brightness + "K</p>");
 
     bushFireMarkers.push(bushFire);
 
     var bushFires = L.layerGroup(bushFireMarkers);
   }
 
-  var markers = L.markerClusterGroup({});
-
-  // Loop through data
-  for (var i = 0; i < response.length; i++) {
-
-    // Set the data location property to a variable
-    var location = response[i];
-
-    // Check for location property
-    if (location) {
-
-      // Add a new marker to the cluster group and bind a pop-up
-      markers.addLayer(L.marker([location.latitude, location.longitude])
-        .bindPopup(response[i].descriptor));
-    }
-  }
 
   var heatArray = [];
 
@@ -124,4 +126,23 @@ function createMarkers(response) {
 //   console.log(response);
 // });
 // d3.json("static/js/data.json").then(createMarkers);
-d3.json("http://127.0.0.1:5000/december").then(createMarkers);
+
+
+// d3.json("http://127.0.0.1:5000/january").then(createMarkers);
+
+var url = "http://127.0.0.1:5000/";
+
+var markers = new L.FeatureGroup();
+
+d3.selectAll(".btn").on("click", function() {
+  console.log(this.value);
+  var queryURL = url + this.value;
+  console.log(queryURL);
+  myMap.eachLayer(function (layer) {
+    myMap.removeLayer(layer);
+  });
+  
+  myMap.remove(sliderControl);
+  myMap.remove(layerControl);
+  d3.json(queryURL).then(createMarkers);
+});
