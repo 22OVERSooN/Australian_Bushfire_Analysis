@@ -11,10 +11,12 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
   integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
   crossorigin=""/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 
   <!-- Icons -->
   <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="static/css/leaflet.extra-markers.min.css">
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"></link>
 
   <!-- Our CSS -->
   <link rel="stylesheet" type="text/css" href="static/css/style.css">
@@ -23,6 +25,20 @@
 <body>
 
   <!-- The div that holds our map -->
+  <div id="button">
+    <button type="button" class="btn btn-primary" value="january">January</button>
+    <button type="button" class="btn btn-primary" value="february">February</button>
+    <button type="button" class="btn btn-primary" value="march">March</button>
+    <button type="button" class="btn btn-primary" value="april">April</button>
+    <button type="button" class="btn btn-primary" value="may">May</button>
+    <button type="button" class="btn btn-primary" value="june">June</button>
+    <button type="button" class="btn btn-primary" value="july">July</button>
+    <button type="button" class="btn btn-primary" value="august">August</button>
+    <button type="button" class="btn btn-primary" value="september">September</button>
+    <button type="button" class="btn btn-primary" value="october">October</button>
+    <button type="button" class="btn btn-primary" value="november">November</button>
+    <button type="button" class="btn btn-primary" value="december">December</button>
+  </div>
   <div id="map-id"></div>
 
   <!-- D3 -->
@@ -51,6 +67,18 @@
   <script type="text/javascript" src="static/js/logic.js"></script>
 
   <script type="text/javascript" src="static/js/leaflet-heat.js"></script>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min.js"></script>
+
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+
+  <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+
+  <script src="static/js/SliderControl.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
 
 </body>
 
