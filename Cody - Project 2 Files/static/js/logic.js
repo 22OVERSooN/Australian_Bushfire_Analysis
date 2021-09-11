@@ -44,6 +44,23 @@ var layerControl;
 
 function createMarkers(response) {
 
+  if (heat) {
+    console.log(heat);
+    myMap.remove(overlayMaps);
+  };
+  if (bushFires) {
+    console.log(bushFires);  
+    myMap.remove(bushFires);
+  }
+  if (sliderControl) {
+    console.log(sliderControl);
+    myMap.remove(sliderControl);
+  }
+  if (layerControl) {
+    console.log(layerControl);
+    myMap.remove(layerControl);
+  }
+
     var bushfires = response;
 
     var bushFireMarkers = [];
@@ -57,6 +74,8 @@ function createMarkers(response) {
   
       var bushFires = L.layerGroup(bushFireMarkers);
     }
+
+    console.log(bushFires);
 
     var heatArray = [];
 
@@ -75,8 +94,6 @@ function createMarkers(response) {
       }
     }
   
-    console.log(heatArray);
-  
     var heat = L.heatLayer(heatArray, {
       radius: 6,
       blur: 0,
@@ -89,12 +106,14 @@ function createMarkers(response) {
         1.0: "black"
       }
     });
-    console.log(heat);
+    
 
     var overlayMaps = {
         "Bush Fires": bushFires,
         "Heat Map": heat
       };
+
+    console.log(overlayMaps);
 
     var sliderControl = L.control.sliderControl({position: "bottomleft", layer: bushFires});
 
@@ -110,25 +129,7 @@ function createMarkers(response) {
 
 
 d3.selectAll(".btn").on("click", function() {
-  console.log(this.value);
-  var map = d3.selectAll("map-id");
   var queryURL = url + this.value;
   console.log(queryURL);
-  if (heat) {
-    console.log(heat);
-    map.remove(heat);
-  };
-  if (bushFires) {
-    console.log(bushFires);  
-    map.remove(bushFires);
-  }
-  if (sliderControl) {
-    console.log(sliderControl);
-    map.remove(sliderControl);
-  }
-  if (layerControl) {
-    console.log(layerControl);
-    map.remove(layerControl);
-  }
 d3.json(queryURL).then(createMarkers);
 });
