@@ -6,6 +6,8 @@ import pymongo
 
 #use flask_pymongo to set up mongo connection
 app = Flask(__name__)
+cors = CORS(app, resources={r"/letitgo": {"origins": "*"}})
+cors = CORS(app, resources={r"/barsnscatters": {"origins": "*"}})
 cors = CORS(app, resources={r"/january": {"origins": "*"}})
 cors = CORS(app, resources={r"/february": {"origins": "*"}})
 cors = CORS(app, resources={r"/march": {"origins": "*"}})
@@ -213,6 +215,7 @@ def welcome():
         f"/barsnscatters"
     )
 @app.route('/barsnscatters')
+@cross_origin()
 def barsnscatters():
 
     bar_data = []
@@ -223,6 +226,7 @@ def barsnscatters():
     return jsonify(bar_data)
 
 @app.route('/letitgo')
+@cross_origin()
 def sliding():
 
     plots = []
