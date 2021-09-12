@@ -5,7 +5,7 @@ function init(){
 
     const stationNames = []; 
     //read the json file
-    d3.json("../../Resources/Json/aus_weather_barchart.json").then((datas) => {  
+    d3.json("../Resources/Json/aus_weather_barchart.json").then((datas) => {  
         //render through the data set
         datas.forEach(function(data){
             const stationName = data['State-Station']
