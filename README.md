@@ -30,9 +30,15 @@ Bubble chart with slicing bar shows the PM 2.5 and SO2 conditions.
 # Coding approach & Data munging techniques:
 
 Python -to clean the dataset, and import the data into MongoDB
+
 MongoDB - to store the data set the analysis is based on
+
 Flask - to call the data from MongoDB and return the filtered data in Json format
+
 HTML - to setup the structure of the dashboard webpage
+
 JavaScript - to add interactive behavior to web pages
+
 CSS- To set the style of the webpage
+
 JS library- Granim.js
