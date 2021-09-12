@@ -44,23 +44,31 @@
           </div>
           <div class ="container">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
               <div id="button">
+                <div>
                 <button type="button" class="btn btn-primary" value="january">January</button>
                 <button type="button" class="btn btn-primary" value="february">February</button>
                 <button type="button" class="btn btn-primary" value="march">March</button>
+                </div>
+                <div>
                 <button type="button" class="btn btn-primary" value="april">April</button>
                 <button type="button" class="btn btn-primary" value="may">May</button>
                 <button type="button" class="btn btn-primary" value="june">June</button>
                 <button type="button" class="btn btn-primary" value="july">July</button>
+                </div>
                 <button type="button" class="btn btn-primary" value="august">August</button>
                 <button type="button" class="btn btn-primary" value="september">September</button>
                 <button type="button" class="btn btn-primary" value="october">October</button>
                 <button type="button" class="btn btn-primary" value="november">November</button>
                 <button type="button" class="btn btn-primary" value="december">December</button>
               </div>
+            <p>This chart allows the user to select a month's worth of bushfire data as captured by NASA's satellite imaging.</p><br>
+            <p>Each marker indicates a reading covering an area of approx. 1km radius, the pop-ups detail the date that the reading was recorded and the brightness of the measured fire pixel.</p><br>
+            <p>After selecting a month, the map allows a user to view the heat map for the entire month and examine the density of readings, with the scale based on brightness of reading (maximum of 400.1K).</p><br>
+            <p>The chart also features two ways to view individual readings, cchecking the "Bush Fires" layer in the layer select will drop all markers onto the map at once, or you can use the slider in the bottom right to add them by date allowing you to view the propagation of readings.</p>
             </div>
-            <div id = "mapbox" class='col-md-8'>
+            <div id = "mapbox" class='col-md-9'>
               <div id="map-id"></div>
             </div> 
           </div>
