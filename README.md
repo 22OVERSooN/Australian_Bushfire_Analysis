@@ -42,3 +42,19 @@ JavaScript - to add interactive behavior to web pages
 CSS- To set the style of the webpage
 
 JS library- Granim.js
+
+# PPT
+
+https://docs.google.com/presentation/d/1adxHrJDJsVip-LbD-LIfusKg_pV59fK-FQwAUsZHR5I/edit?usp=sharing 
+
+# Limitations
+
+Finding connection among different data sets from different sources
+
+Difficulties in finding all states financial data regarding bush fires
+
+Data size too big to process under tight time frame
+
+Data format inconsistency: eg. observation records contain only 1 decimal which leads to inaccurate plottings 
+
+Data completeness and accuracy is compromised through data cleaning enable to to provide better visualization for viewers
