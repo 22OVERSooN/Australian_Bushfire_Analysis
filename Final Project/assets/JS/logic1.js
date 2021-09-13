@@ -63,7 +63,7 @@ function drawPlot(Names){
             name : "Max Temp(°C)",
             type:"bar",
             mode:"bar+markers",
-            hovertemplate:'<i>Date</i>: %{x|%Y-%m}'+'<br><b>Rainfall</b>: %{y}',
+            hovertemplate:'<i>Date</i>: %{x|%Y-%m}'+'<br><b>Max Temp</b>: %{y}',
             marker: {
                 color: '#283A4B',
                 opacity:'0.8'
