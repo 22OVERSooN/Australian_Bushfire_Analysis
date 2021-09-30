@@ -97,7 +97,8 @@ function drawPlot(Names){
             titlefont: {color: '#ed7014'},
             tickfont: {color: '#ed7014'},
             },
-                      
+            showlegend: true,
+            legend:{"orientation":"h"}           
         }
 
         
