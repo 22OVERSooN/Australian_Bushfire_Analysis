@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Australia Bushfire Analysis</title>
+        <link rel="stylesheet" href="assets/CSS/bootstrap.css">
+        <link rel="stylesheet" href="assets/CSS/style.css">
+          <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css?family=Sanchez" rel="stylesheet">
+
+        <!-- Leaflet CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+        integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+        crossorigin=""/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+        <!-- Icons -->
+        <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        <link rel="stylesheet" href="../assets/CSS/leaflet.extra-markers.min.css">
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"></link>
+
+        <!-- Our CSS -->
+        <link rel="stylesheet" type="text/css" href="assets/CSS/style1.css">
+    </head>
+
+    <body>
+          <div class="outer">
+          <div class="sandbox">
+            <canvas id = "title" width = "1166" height = "300"></canvas>
+            <div class = "text-block">
+              <h1>Australia Bushfire 2019-2020</h1>
+              <br>
+              <br>
+              <a style="font-size: 20px; color: aliceblue;" class="text-link" href = "index.html">Home</a>
+              <br>
+              <a style="font-size: 20px; color: aliceblue;" class="text-link" href = "contact.html">About us</a>
+            </div>
+          </div>
+
+          </div>
+          </div>
+          <div class ="container">
+          <div class = "row">
+            <div class = "col-md-12">
+              <div id="button">
+                <button type="button" style="background-color: #283a4b" class="btn btn-primary" value="january">January</button>
+                <button type="button" style="background-color: #283a4b"class="btn btn-primary" value="february">February</button>
+                <button type="button" style="background-color: #283a4b"class="btn btn-primary" value="march">March</button>
+                <button type="button" style="background-color: #283a4b"class="btn btn-primary" value="april">April</button>
+                <button type="button" style="background-color: #283a4b"class="btn btn-primary" value="may">May</button>
+                <button type="button" style="background-color: #283a4b"class="btn btn-primary" value="june">June</button>
+                <button type="button" style="background-color: #283a4b"class="btn btn-primary" value="july">July</button>
+                <button type="button" style="background-color: #283a4b"class="btn btn-primary" value="august">August</button>
+                <button type="button" style="background-color: #283a4b"class="btn btn-primary" value="september">September</button>
+                <button type="button" style="background-color: #283a4b"class="btn btn-primary" value="october">October</button>
+                <button type="button" style="background-color: #283a4b"class="btn btn-primary" value="november">November</button>
+                <button type="button" style="background-color: #283a4b"class="btn btn-primary" value="december">December</button>
+              </div>
+              </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-3">
+            <p>This chart allows the user to select a month's worth of bushfire data as captured by NASA's satellite imaging.</p><br>
+            <p>Each marker indicates a reading covering an area of approx. 1km radius, the pop-ups detail the date that the reading was recorded and the brightness of the measured fire pixel.</p><br>
+            <p>After selecting a month, the map allows a user to view the heat map for the entire month and examine the density of readings, with the scale based on brightness of reading (maximum of 400.1K).</p><br>
+            <p>The chart also features two ways to view individual readings, cchecking the "Bush Fires" layer in the layer select will drop all markers onto the map at once, or you can use the slider in the bottom right to add them by date allowing you to view the propagation of readings.</p>
+            </div>
+            <div id = "mapbox" class='col-md-9'>
+              <div id="map-id"></div>
+            </div> 
+          </div>
+        <br>
+        <br>
+        <br>
+        <br>
+          <div class="row">
+            <div class="col-md-3">
+                <div class="dropdownbox">
+                    <h5 style ="color: aliceblue; font-size: 16px;">Station:</h5>
+                    <h5 style ="color: aliceblue; font-size: 16px;">(State/Name)</h5>
+                    <select id ="selDataset2" onchange="optionChanged1(this.value)" style="font-size: 11.5px;">
+  
+                    </select>
+                </div>
+                <p>This chart allows the user to select the station & state of BOM weather station data</p><br>
+                <p>Bar plot shows the average max temp of each month, line plot shows the average rainfall(mm) of each month.</p><br>
+            </div>
+            <div class="col-md-9">
+              <div id="barplot">
+                  
+              </div>
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                  <div id="slidingbar">
+                      
+                  </div>
+              </div>
+            </div>
+        </div>
+        <script src="assets/JS/granim.min.js"></script>
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <script src='https://cdn.plot.ly/plotly-2.4.2.min.js'></script>
+
+       
+        <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script> -->
+
+    
+        
+        <!-- <script src="../assets/JS/app.js"></script> -->
+        <!-- <script type = "text/javascript" src="assets/JS/background.js"></script> -->
+        <!-- MomentJS -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+
+        <!-- Leaflet JavaScript -->
+        <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+        integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+        crossorigin=""></script>
+
+        <script type="text/javascript" src="https://unpkg.com/leaflet.markercluster@1.0.3/dist/leaflet.markercluster.js"></script>
+
+        <!-- Icons -->
+        <script src="assets/JS/leaflet.extra-markers.min.js"></script>
+        
+        <!-- API Key -->
+        <script type="text/javascript" src="assets/JS/config.js"></script>
+
+        <!-- polyfill.io is library for using newer JavaScript features in older browers (such as Object.assign) -->
+        <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+
+        <!-- Our JavaScript -->
+        <script type="text/javascript" src="assets/JS/app_bar.js"></script>
+        <script type="text/javascript" src="assets/JS/app_map.js"></script>
+        <!-- <script type="text/javascript" src="assets/JS/app_run.js"></script> -->
+
+        <script type="text/javascript" src="assets/JS/leaflet-heat.js"></script>
+
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min.js"></script>
+
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+
+        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+
+        <script src="assets/JS/SliderControl.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    </body>
+</html>
+

@@ -1,0 +1,75 @@
+html,
+body,
+#map-id {
+  height: 800px;
+  /* width: 1000px; */
+  padding: 0;
+  margin: 0;
+  
+}
+
+.legend {
+  padding: 10px;
+  font-family: Sanchez, serif;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 18px;
+  color: #555;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.legend .low {
+  color: #ec8a2e;
+}
+
+.legend .empty {
+  color: #a0353a;
+}
+
+.legend .coming-soon {
+  color: #f4ba48;
+}
+
+.legend .healthy {
+  color: #1b904f;
+}
+
+.legend .out-of-order {
+  color: #007dff;
+}
+
+.marker-cluster-small {
+  background-color: rgba(218, 94, 94, 0.6);
+  }
+  .marker-cluster-small div {
+  background-color: rgba(226, 36, 36, 0.6);
+  }
+  .marker-cluster-medium {
+  background-color: rgba(241, 211, 87, 0.6);
+  }
+  .marker-cluster-medium div {
+  background-color: rgba(240, 194, 12, 0.6);
+  }
+  
+  .marker-cluster-large {
+  background-color: rgba(253, 156, 115, 0.6);
+  }
+  .marker-cluster-large div {
+  background-color: rgba(241, 128, 23, 0.6);
+  }
+
+p {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+button {
+    background-color: #283a4b;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#button { 
+  margin-left: 100px;
+  position: relative
+}

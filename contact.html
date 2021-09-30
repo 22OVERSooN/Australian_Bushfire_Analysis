@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Australia Bushfire Analysis</title>
+        <link rel="stylesheet" href="assets/CSS/bootstrap.css">
+        <link rel="stylesheet" href="assets/CSS/style.css">
+    </head>
+
+    <body>
+        <div class="outer">
+            <div class="sandbox">
+              <canvas id = "title" width = "1166" height = "300"></canvas>
+              <div class = "text-block">
+                <h1>Australia Bushfire 2019-2020</h1>
+                <br>
+                <br>
+                <a style="font-size: 20px; color: aliceblue;" class="text-link" href = "index.html">Home</a>
+                <br>
+                <a style="font-size: 20px; color: aliceblue;" class="text-link" href = "contact.html">About us</a>
+              </div>
+            </div>
+          <div class = "container_box" >
+            <div class = "row" style = "width:990px; padding: 20px; margin : 30px">
+                <h1 style ="color: aliceblue; margin: 30px; font-family: 'Courier New', Courier, monospace;" >Team Members</h1>
+                
+               
+                <!-- Cody's profile -->
+                <div class = "row" style = "width:990px; padding: 40px">
+                    <div class = "col-md-6">
+                        <img class = "post-thumb" src='assets/IMG/1.png' alt="profile photo" style="margin-left: 50px;" >
+                    </div>
+                    <div class = "col-md-6">
+                        <h3 style="font-size: 22px; color: aliceblue;font-family: 'Courier New', Courier, monospace;">Cody Dance-Wilson</h3>
+                        <br>
+                        <p style="font-size: 16px; color: aliceblue;font-family: 'Courier New', Courier, monospace;">Email: </p>
+                        <a style="font-size: 16px; color: aliceblue;font-family: 'Courier New', Courier, monospace;" class="text-link" href = "https://github.com/cjdance">Github:cjdance </a>
+                        <br>
+                        <a style="font-size: 16px; color: aliceblue;font-family: 'Courier New', Courier, monospace;" class="text-link" href = "https://www.linkedin.com/in/cody-dance-wilson-917863124/?originalSubdomain=au">Linkedln </a>
+                    </div>
+                    
+                </div>
+
+                <!-- Echo's profile -->
+                <div class = "row" style = "width:990px; padding: 40px">
+                    <div class = "col-md-6">
+                        <img class = "post-thumb" src="assets/IMG/2.png" alt="profile photo" style="margin-left: 50px;" >
+                    </div>
+                    <div class = "col-md-6">
+                        <h3 style="font-size: 22px; color: aliceblue;font-family: 'Courier New', Courier, monospace;">Echo Yu</h3>
+                        <br>
+                        <p style="font-size: 16px; color: aliceblue;font-family: 'Courier New', Courier, monospace;">Email: echoyu.business@gmail.com</p>
+                        <a style="font-size: 16px; color: aliceblue;font-family: 'Courier New', Courier, monospace;" class="text-link" href = "http://github.com.22OVERSooN">Github: 22OVERSooN</a>
+                        <br>
+                        <a style="font-size: 16px; color: aliceblue;font-family: 'Courier New', Courier, monospace;" class="text-link" href = "https://www.linkedin.com/in/echoyu531/">Linkedln</a>
+                    </div>
+                    
+                </div>
+
+                <!-- Matt's profile -->
+                <div class = "row" style = "width:990px; padding: 40px">
+                    <div class = "col-md-6">
+                        <img class = "post-thumb" src="assets/IMG/3.png" alt="profile photo" style="margin-left: 50px;">
+                    </div>
+                    <div class = "col-md-6">
+                        <h3 style="font-size: 22px; color: aliceblue;font-family: 'Courier New', Courier, monospace;">Matt Wang</h3>
+                        <br>
+                        <p style="font-size: 16px; color: aliceblue;font-family: 'Courier New', Courier, monospace;">Email: matt.jizhongw@gmail.com</p>
+                        <a style="font-size: 16px; color: aliceblue;font-family: 'Courier New', Courier, monospace;" class="text-link" href = "https://github.com/Thgiliwt">Github: Thgiliwt</a>
+                        <br>
+                        <a style="font-size: 16px; color: aliceblue;font-family: 'Courier New', Courier, monospace;" class="text-link" href = "https://www.linkedin.com/in/jizhong-wang-259501211/">Linkedln</a>
+                    </div>
+                    
+                </div>
+
+                <!-- Rachel's profile -->
+                <div class = "row" style = "width:990px; padding: 40px">
+                    <div class = "col-md-6">
+                        <img class = "post-thumb" src="assets/IMG/4.png" alt="profile photo" style="margin-left: 50px;">
+                    </div>
+                    <div class = "col-md-6">
+                        <h3 style="font-size: 22px; color: aliceblue;font-family: 'Courier New', Courier, monospace;">Rachel Zhang</h3>
+                        <br>
+                        <p style="font-size: 16px; color: aliceblue;font-family: 'Courier New', Courier, monospace;">Email: mailrenxu@hotmail.com</p>
+                        <a style="font-size: 16px; color: aliceblue;font-family: 'Courier New', Courier, monospace;" class="text-link" href = "https://github.com/RZHANG2021">Github: RZHANG2021</a>
+                        <br>
+                        <a style="font-size: 16px; color: aliceblue;font-family: 'Courier New', Courier, monospace;" class="text-link" href = "http://linkedin.com/in/rachel-zhang-097185a2">Linkedln</a>
+                    </div>
+                    
+                </div>
+            
+          </div>
+          <script src="assets/JS/granim.min.js"></script>
+          <script src="https://d3js.org/d3.v5.min.js"></script>
+          <script src='https://cdn.plot.ly/plotly-2.4.2.min.js'></script>
+          
+        <!-- MomentJS -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+
+        <!-- Leaflet JavaScript -->
+        <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+        integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+        crossorigin=""></script>
+
+        <script type="text/javascript" src="https://unpkg.com/leaflet.markercluster@1.0.3/dist/leaflet.markercluster.js"></script>
+
+        <!-- Icons -->
+        <script src="assets/JS/leaflet.extra-markers.min.js"></script>
+        
+        <!-- API Key -->
+        <script type="text/javascript" src="assets/JS/config.js"></script>
+
+        <!-- polyfill.io is library for using newer JavaScript features in older browers (such as Object.assign) -->
+        <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+
+        <!-- Our JavaScript -->
+        <script type="text/javascript" src="assets/JS/app_bar.js"></script>
+        <script type="text/javascript" src="assets/JS/app_map.js"></script>
+        <!-- <script type="text/javascript" src="assets/JS/app_run.js"></script> -->
+
+        <script type="text/javascript" src="assets/JS/leaflet-heat.js"></script>
+
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min.js"></script>
+
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+
+        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+
+        <script src="assets/JS/SliderControl.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    </body>
+</html>
