@@ -66,7 +66,7 @@ function drawPlot(Names){
             hovertemplate:'<i>Date</i>: %{x|%Y-%m}'+'<br><b>Max Temp</b>: %{y}',
             marker: {
                 color: '#283A4B',
-                opacity:'0.8'
+                opacity:'0.9'
               }
         };
 
@@ -98,7 +98,9 @@ function drawPlot(Names){
             tickfont: {color: '#ed7014'},
             },
             showlegend: true,
-            legend:{"orientation":"h"}           
+            legend:{"orientation":"h"},
+            plot_bgcolor:'rgba(0,0,0,0)',
+            paper_bgcolor:'rgba(0,0,0,0)'          
         }
 
         
@@ -231,6 +233,14 @@ function mattdraw(){
   }
 
   var layout = {
+    plot_bgcolor:'rgba(0,0,0,0)',
+    paper_bgcolor:'rgba(0,0,0,0)',
+    showlegend: true,
+    legend: {
+      x: 1,
+      xanchor: 'right',
+      y: 1.4
+    },
     font:{
       family:"'Courier New', Courier, monospace"
     },
